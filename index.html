@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hành Trình Tự Chủ - Sống Lành Mạnh & Kỷ Luật</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151e2e',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        emerald: {
+                            450: '#20b486',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        /* Hiệu ứng nhịp thở 4-7-8 */
+        .breathing-circle {
+            transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1), background-color 1s ease, box-shadow 1s ease;
+        }
+        .breathing-inhale {
+            transform: scale(1.45);
+            background-color: rgba(16, 185, 129, 0.25);
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+        }
+        .breathing-hold {
+            transform: scale(1.45);
+            background-color: rgba(56, 189, 248, 0.25);
+            box-shadow: 0 0 45px rgba(56, 189, 248, 0.4);
+        }
+        .breathing-exhale {
+            transform: scale(1);
+            transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1), background-color 1s ease, box-shadow 1s ease;
+            background-color: rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+        /* Thanh cuộn tinh tế */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(148, 163, 184, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-emerald-500/30 selection:text-emerald-200">
+
+    <!-- ========================================== -->
+    <!-- MÀN HÌNH ẨN NHANH (BOSS KEY / STEALTH MODE) -->
+    <!-- ========================================== -->
+    <div id="stealthScreen" class="hidden fixed inset-0 z-50 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 flex flex-col">
+        <header class="border-b border-slate-200 dark:border-slate-800 px-6 py-3 flex items-center justify-between bg-slate-50 dark:bg-slate-950">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">W</div>
+                <div>
+                    <h1 class="font-semibold text-sm">Ghi Chú Công Việc & Kế Hoạch Tuần</h1>
+                    <p class="text-xs text-slate-500">Tự động lưu lúc <span id="stealthTime">14:30</span></p>
+                </div>
+            </div>
+            <button onclick="toggleStealthMode()" class="text-xs px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition">
+                Quay lại (ESC)
+            </button>
+        </header>
+        <div class="max-w-4xl w-full mx-auto p-6 flex-1 flex flex-col gap-4">
+            <input type="text" value="Tổng hợp tiến độ dự án Q4 & Mục tiêu cá nhân" class="text-2xl font-bold bg-transparent border-none focus:outline-none text-slate-800 dark:text-slate-100">
+            <div class="flex gap-2 text-xs text-slate-500 border-b border-slate-200 dark:border-slate-800 pb-3">
+                <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">Tài liệu nội bộ</span>
+                <span class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">Ưu tiên cao</span>
+            </div>
+            <textarea class="w-full flex-1 bg-transparent resize-none focus:outline-none leading-relaxed text-slate-700 dark:text-slate-300" placeholder="Nhập ghi chú cuộc họp tại đây...">1. Rà soát lại hiệu suất làm việc trong tuần qua:
+- Hoàn thành báo cáo phân tích dữ liệu người dùng.
+- Tối ưu hóa quy trình quản lý thời gian theo phương pháp Pomodoro (25 phút tập trung / 5 phút nghỉ ngơi).
+- Giảm thiểu thời gian sử dụng thiết bị điện tử sau 22:30 để cải thiện chất lượng giấc ngủ sâu.
+
+2. Kế hoạch hành động tuần tới:
+- Duy trì thói quen đọc sách chuyên ngành 30 phút mỗi sáng.
+- Tập thể dục thể thao ít nhất 4 buổi/tuần để tăng cường thể lực và sự minh mẫn.
+- Cập nhật danh sách công việc ưu tiên vào đầu mỗi ngày làm việc.</textarea>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- THANH ĐIỀU HƯỚNG TRÊN CÙNG (HEADER)        -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-30 backdrop-blur-md bg-white/80 dark:bg-slate-950/80 border-b border-slate-200/80 dark:border-slate-800/80">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <!-- Logo & Tên Ứng Dụng -->
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white shadow-lg shadow-emerald-500/20">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <span class="font-bold text-base tracking-tight block leading-none">Tự Chủ</span>
+                    <span class="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Bình tĩnh • Kiên định • Tự do</span>
+                </div>
+            </div>
+
+            <!-- Các công cụ nhanh -->
+            <div class="flex items-center gap-2">
+                <!-- Nút Ẩn Nhanh (Boss Key) -->
+                <button onclick="toggleStealthMode()" title="Ẩn nhanh sang màn hình ghi chú công việc (Phím tắt: ESC)" class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition">
+                    <i data-lucide="eye-off" class="w-4 h-4 text-slate-500"></i>
+                    <span class="hidden sm:inline">Ẩn nhanh</span>
+                </button>
+
+                <!-- Nút Chuyển Giao Diện Sáng/Tối -->
+                <button onclick="toggleTheme()" title="Đổi giao diện Sáng / Tối" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition">
+                    <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+                </button>
+
+                <!-- Nút Sao lưu / Cài đặt dữ liệu -->
+                <button onclick="openModal('backupModal')" title="Sao lưu & Khôi phục dữ liệu" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200/80 dark:border-slate-800 transition">
+                    <i data-lucide="database" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- NỘI DUNG CHÍNH (MAIN DASHBOARD)            -->
+    <!-- ========================================== -->
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+        <!-- Hộp thông báo (Toast Message) -->
+        <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 dark:bg-emerald-950 text-white border border-slate-700 dark:border-emerald-700/60 px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-sm">
+            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 shrink-0"></i>
+            <span id="toastMsg">Đã lưu thay đổi!</span>
+        </div>
+
+        <!-- PHẦN 1: ĐỒNG HỒ ĐẾM CHUỖI NGÀY & NÚT SOS -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Card Đồng hồ chính -->
+            <div class="lg:col-span-2 bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-sm relative overflow-hidden flex flex-col justify-between">
+                <!-- Trang trí nền nhẹ -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span id="statusBadgeText">Đang trong hành trình</span>
+                    </div>
+                    <span id="startDateDisplay" class="text-xs text-slate-400">Bắt đầu: --/--/----</span>
+                </div>
+
+                <!-- Bộ đếm thời gian thực -->
+                <div class="my-2 text-center sm:text-left">
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-2 font-medium">Thời gian bạn đã làm chủ bản thân:</p>
+                    <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto sm:mx-0">
+                        <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/70 dark:border-slate-800 rounded-2xl p-3 sm:p-4 text-center">
+                            <span id="daysCount" class="block text-2xl sm:text-4xl font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">0</span>
+                            <span class="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium mt-1 block">Ngày</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/70 dark:border-slate-800 rounded-2xl p-3 sm:p-4 text-center">
+                            <span id="hoursCount" class="block text-2xl sm:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">00</span>
+                            <span class="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium mt-1 block">Giờ</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/70 dark:border-slate-800 rounded-2xl p-3 sm:p-4 text-center">
+                            <span id="minutesCount" class="block text-2xl sm:text-4xl font-bold text-slate-800 dark:text-slate-100 tracking-tight">00</span>
+                            <span class="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium mt-1 block">Phút</span>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/70 dark:border-slate-800 rounded-2xl p-3 sm:p-4 text-center">
+                            <span id="secondsCount" class="block text-2xl sm:text-4xl font-bold text-slate-600 dark:text-slate-400 tracking-tight">00</span>
+                            <span class="text-[11px] sm:text-xs text-slate-500 uppercase tracking-wider font-medium mt-1 block">Giây</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thống kê phụ & Nút điều khiển -->
+                <div class="mt-8 pt-5 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-6">
+                        <div>
+                            <span class="text-xs text-slate-400 block">Kỷ lục dài nhất</span>
+                            <span id="bestStreakDisplay" class="font-bold text-base text-amber-500">0 ngày</span>
+                        </div>
+                        <div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
+                        <div>
+                            <span class="text-xs text-slate-400 block">Số lần nỗ lực</span>
+                            <span id="attemptsDisplay" class="font-bold text-base text-slate-700 dark:text-slate-200">1 lần</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button id="startJourneyBtn" onclick="startNewJourney()" class="hidden px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium transition shadow-lg shadow-emerald-600/20 flex items-center gap-2">
+                            <i data-lucide="play" class="w-4 h-4"></i>
+                            Bắt đầu hành trình
+                        </button>
+                        <button id="resetStreakBtn" onclick="openModal('resetModal')" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700/80 text-slate-600 dark:text-slate-300 text-xs sm:text-sm font-medium transition flex items-center gap-2">
+                            <i data-lucide="rotate-ccw" class="w-4 h-4 text-slate-400"></i>
+                            Đặt lại chuỗi
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Khẩn Cấp (SOS / Panic Button) -->
+            <div class="bg-gradient-to-b from-amber-500/10 via-rose-500/5 to-white dark:from-amber-950/30 dark:via-slate-900 dark:to-slate-900 border border-amber-500/30 dark:border-amber-500/20 rounded-3xl p-6 sm:p-7 flex flex-col justify-between text-center relative overflow-hidden">
+                <div class="space-y-2">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-3">
+                        <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                    </div>
+                    <h2 class="font-bold text-lg text-slate-800 dark:text-slate-100">Đang gặp cơn thôi thúc?</h2>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Cảm giác này chỉ là nhất thời và sẽ qua đi sau vài phút. Đừng chiến đấu một mình, hãy bấm nút bên dưới ngay.
+                    </p>
+                </div>
+
+                <div class="my-6">
+                    <button onclick="openSOSModal()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold text-base shadow-xl shadow-orange-600/25 transform hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2.5 cursor-pointer">
+                        <i data-lucide="life-buoy" class="w-5 h-5 animate-spin" style="animation-duration: 8s;"></i>
+                        HỖ TRỢ KHẨN CẤP (SOS)
+                    </button>
+                </div>
+
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 italic">
+                    "Kỷ luật là sự lựa chọn giữa điều bạn muốn ngay bây giờ và điều bạn muốn nhất trong đời."
+                </p>
+            </div>
+        </section>
+
+        <!-- PHẦN 2: CỘT MỐC PHỤC HỒI (MILESTONES) -->
+        <section class="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-8 shadow-sm">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+                <div>
+                    <h2 class="font-bold text-lg flex items-center gap-2">
+                        <i data-lucide="award" class="w-5 h-5 text-emerald-500"></i>
+                        Cột mốc phục hồi & Lợi ích khoa học
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">Cơ thể và hệ thần kinh của bạn đang tái tạo từng ngày</p>
+                </div>
+                <span id="nextMilestoneBadge" class="text-xs font-medium px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                    Mục tiêu tiếp theo: 1 ngày
+                </span>
+            </div>
+
+            <!-- Thanh tiến trình tổng thể đến 90 ngày -->
+            <div class="mb-6">
+                <div class="flex justify-between text-xs text-slate-500 mb-2">
+                    <span>Tiến độ 90 ngày tái thiết lập (Reboot)</span>
+                    <span id="progressPercent" class="font-semibold text-emerald-600 dark:text-emerald-400">0%</span>
+                </div>
+                <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div id="overallProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full transition-all duration-700" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Danh sách các cột mốc -->
+            <div id="milestonesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+                <!-- Được render tự động bằng JS -->
+            </div>
+        </section>
+
+        <!-- PHẦN 3: MỤC TIÊU CÁ NHÂN & NHẬT KÝ TÁC NHÂN -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Cột Trái (5 phần): Lý do bắt đầu & Cam kết cá nhân -->
+            <div class="lg:col-span-5 bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="font-bold text-lg flex items-center gap-2">
+                            <i data-lucide="heart-handshake" class="w-5 h-5 text-rose-500"></i>
+                            Lý do tôi bắt đầu
+                        </h2>
+                        <span id="goalSavedStatus" class="text-[11px] text-emerald-500 opacity-0 transition-opacity">Đã lưu tự động</span>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
+                        Hãy viết ra những điều quan trọng nhất thúc đẩy bạn thay đổi. Lời nhắn này sẽ hiện lên khi bạn bấm nút SOS.
+                    </p>
+                    <textarea id="personalGoalInput" rows="6" oninput="savePersonalGoal()" class="w-full rounded-2xl bg-slate-50 dark:bg-slate-950/70 border border-slate-200 dark:border-slate-800 p-4 text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:border-emerald-500 transition leading-relaxed resize-none" placeholder="Ví dụ:
+• Tôi muốn có nhiều năng lượng và sự tập trung hơn cho công việc/học tập.
+• Tôi muốn xây dựng sự tự tin chân thật và các mối quan hệ lành mạnh.
+• Tôi không muốn bị kiểm soát bởi những thói quen nhất thời..."></textarea>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center gap-2 text-xs text-slate-500">
+                    <i data-lucide="lock" class="w-4 h-4 text-emerald-500 shrink-0"></i>
+                    <span>Dữ liệu lưu cục bộ 100% trên trình duyệt của bạn.</span>
+                </div>
+            </div>
+
+            <!-- Cột Phải (7 phần): Nhật ký Tâm trạng & Tác nhân kích thích -->
+            <div class="lg:col-span-7 bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800/80 rounded-3xl p-6 sm:p-7 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="font-bold text-lg flex items-center gap-2">
+                                <i data-lucide="activity" class="w-5 h-5 text-sky-500"></i>
+                                Theo dõi tâm trạng & Tác nhân (Triggers)
+                            </h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Nhận diện tác nhân giúp bạn chủ động phòng tránh trước khi cơn thôi thúc ập đến</p>
+                        </div>
+                    </div>
+
+                    <!-- Form ghi nhanh nhật ký -->
+                    <div class="bg-slate-50 dark:bg-slate-950/60 border border-slate-200/70 dark:border-slate-800/80 rounded-2xl p-4 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Chọn tâm trạng -->
+                            <div>
+                                <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Tâm trạng hiện tại</label>
+                                <div class="grid grid-cols-4 gap-1.5" id="moodSelector">
+                                    <button type="button" onclick="selectMood('Bình an', this)" class="mood-btn active-mood py-2 px-1 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium text-center transition">😌 Bình an</button>
+                                    <button type="button" onclick="selectMood('Tích cực', this)" class="mood-btn py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-xs font-medium text-center transition">⚡ Tích cực</button>
+                                    <button type="button" onclick="selectMood('Căng thẳng', this)" class="mood-btn py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-xs font-medium text-center transition">😫 Stress</button>
+                                    <button type="button" onclick="selectMood('Buồn chán', this)" class="mood-btn py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-xs font-medium text-center transition">😶 Chán nản</button>
+                                </div>
+                            </div>
+
+                            <!-- Mức độ thôi thúc (1-5) -->
+                            <div>
+                                <div class="flex justify-between text-xs mb-2">
+                                    <label class="font-medium text-slate-500 dark:text-slate-400">Mức độ thôi thúc (Urge)</label>
+                                    <span id="urgeLevelLabel" class="font-bold text-emerald-500">1 / 5 (Rất thấp)</span>
+                                </div>
+                                <input type="range" id="urgeRange" min="1" max="5" value="1" oninput="updateUrgeLabel(this.value)" class="w-full accent-emerald-500 cursor-pointer h-2 bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                                    <span>1: Kiểm soát tốt</span>
+                                    <span>3: Hơi xao nhãng</span>
+                                    <span>5: Rất mạnh</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chọn tác nhân kích thích -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-2">Tác nhân kích thích (nếu có):</label>
+                            <div class="flex flex-wrap gap-1.5" id="triggerTags">
+                                <button type="button" onclick="toggleTriggerTag(this, 'Không có')" class="trigger-tag selected-tag px-2.5 py-1 rounded-lg text-xs border border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition">Không có</button>
+                                <button type="button" onclick="toggleTriggerTag(this, 'Căng thẳng / Áp lực')" class="trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition">Căng thẳng / Áp lực</button>
+                                <button type="button" onclick="toggleTriggerTag(this, 'Lướt mạng xã hội khuya')" class="trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition">Lướt MXH khuya</button>
+                                <button type="button" onclick="toggleTriggerTag(this, 'Rảnh rỗi / Ở một mình')" class="trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition">Rảnh rỗi / Ở một mình</button>
+                                <button type="button" onclick="toggleTriggerTag(this, 'Thức khuya / Thiếu ngủ')" class="trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition">Thức khuya</button>
+                                <button type="button" onclick="toggleTriggerTag(this, 'Cô đơn / Buồn bã')" class="trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition">Cô đơn</button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-2 pt-1">
+                            <input type="text" id="journalNoteInput" placeholder="Ghi chú ngắn về suy nghĩ hoặc cách bạn vượt qua hôm nay..." class="flex-1 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3.5 py-2 text-xs sm:text-sm focus:outline-none focus:border-emerald-500">
+                            <button onclick="addJournalEntry()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-medium transition shrink-0 flex items-center justify-center gap-1.5">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                Lưu nhật ký
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Thống kê tác nhân phổ biến & Lịch sử gần đây -->
+                    <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Thống kê tác nhân -->
+                        <div class="border border-slate-100 dark:border-slate-800/80 rounded-2xl p-3.5">
+                            <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
+                                <i data-lucide="bar-chart-2" class="w-3.5 h-3.5 text-amber-500"></i>
+                                Tác nhân thường gặp nhất
+                            </h3>
+                            <div id="topTriggersList" class="space-y-2 text-xs">
+                                <p class="text-slate-400 italic">Chưa có dữ liệu thống kê.</p>
+                            </div>
+                        </div>
+
+                        <!-- Nhật ký gần đây -->
+                        <div class="border border-slate-100 dark:border-slate-800/80 rounded-2xl p-3.5 flex flex-col">
+                            <div class="flex items-center justify-between mb-2.5">
+                                <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i data-lucide="book-open" class="w-3.5 h-3.5 text-sky-500"></i>
+                                    Ghi chép gần đây
+                                </h3>
+                                <span id="journalCountBadge" class="text-[11px] text-slate-400">0 mục</span>
+                            </div>
+                            <div id="journalHistoryList" class="space-y-2 max-h-36 overflow-y-auto pr-1 text-xs">
+                                <p class="text-slate-400 italic">Hãy lưu ghi chép đầu tiên của bạn.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL 1: HỖ TRỢ KHẨN CẤP (SOS / PANIC)     -->
+    <!-- ========================================== -->
+    <div id="sosModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative my-auto">
+            <!-- Nút đóng -->
+            <button onclick="closeSOSModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white transition">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 text-xs font-semibold mb-2">Khoảng lặng bình tĩnh</span>
+                <h2 class="text-xl sm:text-2xl font-bold">Hít thở sâu. Bạn đang làm chủ tình huống.</h2>
+                <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Cơn thôi thúc chỉ là một tín hiệu dopamine tạm thời. Hãy cùng làm dịu hệ thần kinh trong 60 giây.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <!-- Bài tập thở 4-7-8 -->
+                <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center min-h-[260px]">
+                    <div class="relative w-36 h-36 flex items-center justify-center my-3">
+                        <div id="breathCircle" class="breathing-circle w-24 h-24 rounded-full bg-emerald-500/15 border-2 border-emerald-500/50 flex flex-col items-center justify-center">
+                            <span id="breathTimer" class="text-2xl font-bold text-emerald-600 dark:text-emerald-400">4-7-8</span>
+                        </div>
+                    </div>
+                    <p id="breathInstruction" class="font-semibold text-sm text-slate-700 dark:text-slate-200 mt-2">Sẵn sàng hít thở điều hòa</p>
+                    <p id="breathSubtext" class="text-xs text-slate-500 mt-1">Hít vào 4s • Giữ 7s • Thở ra 8s</p>
+                    <button id="toggleBreathBtn" onclick="toggleBreathingExercise()" class="mt-4 px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-medium transition">
+                        Bắt đầu nhịp thở
+                    </button>
+                </div>
+
+                <!-- Hành động thay thế & Lý do cá nhân -->
+                <div class="space-y-4">
+                    <!-- Hành động thay thế ngay lập tức -->
+                    <div class="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                                <i data-lucide="zap" class="w-4 h-4"></i>
+                                Hành động ngắt quãng ngay
+                            </span>
+                            <button onclick="pickRandomAction()" class="text-xs text-slate-500 hover:text-amber-500 flex items-center gap-1 transition">
+                                <i data-lucide="refresh-cw" class="w-3 h-3"></i> Đổi gợi ý
+                            </button>
+                        </div>
+                        <p id="sosActionText" class="font-semibold text-sm sm:text-base text-slate-800 dark:text-slate-100 py-1">
+                            Chống đẩy 20 cái ngay lập tức để chuyển hóa năng lượng!
+                        </p>
+                    </div>
+
+                    <!-- Nhắc nhở lý do bắt đầu -->
+                    <div class="bg-slate-50 dark:bg-slate-950/80 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-rose-500 flex items-center gap-1.5 mb-2">
+                            <i data-lucide="heart" class="w-3.5 h-3.5"></i>
+                            Lời nhắc từ chính bạn
+                        </span>
+                        <p id="sosGoalReminder" class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 italic leading-relaxed max-h-28 overflow-y-auto">
+                            "Tôi muốn làm chủ bản thân, sống tỉnh thức và dành năng lượng cho những mục tiêu ý nghĩa."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                <span class="text-xs text-slate-400">Mỗi lần vượt qua là một lần não bộ của bạn mạnh mẽ hơn.</span>
+                <button onclick="closeSOSModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-900 text-xs sm:text-sm font-semibold hover:opacity-90 transition">
+                    Tôi đã bình tĩnh lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: ĐẶT LẠI CHUỖI (NHẸ NHÀNG, KHÔNG PHÁN XÉT) -->
+    <!-- ========================================== -->
+    <div id="resetModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl">
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-500 flex items-center justify-center mb-4">
+                <i data-lucide="sprout" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold">Vấp ngã không phải là thất bại</h3>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
+                Hành trình thay đổi thói quen luôn có những khúc quanh. Hãy ghi lại nguyên nhân để rút kinh nghiệm cho lần này tốt hơn, đừng tự trách bản thân nhé.
+            </p>
+
+            <div class="mt-4 space-y-3">
+                <label class="block text-xs font-medium text-slate-600 dark:text-slate-300">Điều gì đã dẫn đến lần tái phát này?</label>
+                <select id="relapseReasonSelect" class="w-full rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500">
+                    <option value="Căng thẳng / Áp lực công việc">Căng thẳng / Áp lực công việc</option>
+                    <option value="Lướt mạng xã hội / Xem nội dung kích thích">Lướt mạng xã hội / Xem nội dung kích thích</option>
+                    <option value="Thức khuya / Ở một mình trong phòng">Thức khuya / Ở một mình trong phòng</option>
+                    <option value="Chán nản / Thiếu mục tiêu trong ngày">Chán nản / Thiếu mục tiêu trong ngày</option>
+                    <option value="Mất cảnh giác khi chuỗi ngày đã dài">Mất cảnh giác khi chuỗi ngày đã dài</option>
+                    <option value="Lý do khác">Lý do khác</option>
+                </select>
+                <input type="text" id="relapseLessonInput" placeholder="Bài học rút ra cho lần tới (không bắt buộc)..." class="w-full rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 px-3.5 py-2.5 text-sm focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div class="mt-6 flex items-center justify-end gap-2.5">
+                <button onclick="closeModal('resetModal')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    Hủy bỏ
+                </button>
+                <button onclick="confirmResetStreak()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs sm:text-sm font-semibold transition">
+                    Ghi nhận & Bắt đầu lại
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 3: SAO LƯU & KHÔI PHỤC DỮ LIỆU       -->
+    <!-- ========================================== -->
+    <div id="backupModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-lg font-bold flex items-center gap-2">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-emerald-500"></i>
+                    Quyền riêng tư & Dữ liệu
+                </h3>
+                <button onclick="closeModal('backupModal')" class="text-slate-400 hover:text-slate-600">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-5">
+                Toàn bộ dữ liệu hành trình và nhật ký của bạn chỉ được lưu trữ cục bộ trên thiết bị này (<code class="text-emerald-500">localStorage</code>). Bạn có thể xuất tệp dự phòng JSON để chuyển sang thiết bị khác.
+            </p>
+
+            <div class="space-y-3">
+                <button onclick="exportDataJSON()" class="w-full py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm font-medium flex items-center justify-between transition">
+                    <span class="flex items-center gap-2.5">
+                        <i data-lucide="download" class="w-4 h-4 text-emerald-500"></i>
+                        Xuất dữ liệu dự phòng (.JSON)
+                    </span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                </button>
+
+                <label class="w-full py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-sm font-medium flex items-center justify-between transition cursor-pointer">
+                    <span class="flex items-center gap-2.5">
+                        <i data-lucide="upload" class="w-4 h-4 text-sky-500"></i>
+                        Khôi phục từ tệp (.JSON)
+                    </span>
+                    <input type="file" accept=".json" onchange="importDataJSON(event)" class="hidden">
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                </label>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-xs text-slate-400">
+                <span>Phím tắt ẩn nhanh: <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded">ESC</kbd></span>
+                <button onclick="closeModal('backupModal')" class="text-emerald-500 font-semibold">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC & STATE MANAGEMENT        -->
+    <!-- ========================================== -->
+    <script>
+        // Khởi tạo icons Lucide
+        lucide.createIcons();
+
+        // Dữ liệu mặc định & Cấu trúc lưu trữ
+        const STORAGE_KEY = 'tu_chu_habit_tracker_v1';
+        let appState = {
+            startTime: Date.now(),      // Mốc thời gian bắt đầu chuỗi hiện tại
+            bestStreakMs: 0,            // Kỷ lục chuỗi dài nhất (tính bằng mili-giây)
+            attempts: 1,                // Tổng số lần nỗ lực
+            personalGoal: '',           // Lý do cá nhân muốn thay đổi
+            journals: [],               // Danh sách nhật ký tâm trạng & tác nhân
+            relapses: [],               // Lịch sử các lần tái phát & bài học
+            theme: 'dark'               // Giao diện sáng/tối
+        };
+
+        // Danh sách các cột mốc phục hồi khoa học
+        const MILESTONES = [
+            { days: 1, title: "24 Giờ Đầu Tiên", desc: "Bước khởi đầu quyết định. Bạn đã phá vỡ vòng lặp tự động của ngày hôm qua." },
+            { days: 3, title: "3 Ngày Vượt Ngưỡng", desc: "Cơn thèm dopamine ngắn hạn đạt đỉnh và bắt đầu dịu xuống. Ý chí được củng cố." },
+            { days: 7, title: "1 Tuần Tỉnh Thức", desc: "Nồng độ testosterone ổn định hơn, năng lượng thể chất và sự minh mẫn cải thiện rõ rệt." },
+            { days: 14, title: "2 Tuần Cân Bằng", desc: "Giấc ngủ sâu hơn, giảm cảm giác mệt mỏi và tăng khả năng tập trung trong công việc." },
+            { days: 30, title: "30 Ngày Tái Tạo", desc: "Các thụ thể dopamine bắt đầu phục hồi độ nhạy tự nhiên với những niềm vui lành mạnh." },
+            { days: 60, title: "60 Ngày Kỷ Luật", desc: "Thói quen mới được hình thành vững chắc. Sự tự tin và bình tĩnh nội tâm tăng cao." },
+            { days: 90, title: "90 Ngày Tự Do", desc: "Hoàn thành chu kỳ tái thiết lập thần kinh (Reboot). Bạn hoàn toàn làm chủ bản thân." }
+        ];
+
+        // Danh sách hành động khẩn cấp khi gặp cơn thôi thúc
+        const SOS_ACTIONS = [
+            "Chống đẩy 20 cái ngay lập tức để chuyển hóa năng lượng!",
+            "Đi vào nhà tắm và rửa mặt thật kỹ bằng nước lạnh.",
+            "Đứng dậy, để điện thoại lại trên bàn và đi bộ ra ngoài phòng 5 phút.",
+            "Uống ngay một cốc nước lọc thật đầy và hít thở sâu.",
+            "Gọi điện hoặc nhắn tin hỏi thăm một người bạn / người thân.",
+            "Mở một bản nhạc không lời thư giãn và dọn dẹp lại góc bàn làm việc.",
+            "Đọc to 3 lần mục tiêu cá nhân bạn đã viết ở trang chính."
+        ];
+
+        // Biến phục vụ UI & Bài tập thở
+        let selectedMood = 'Bình an';
+        let selectedTriggers = ['Không có'];
+        let breathingInterval = null;
+        let isBreathing = false;
+        let timerInterval = null;
+
+        // ==========================================
+        // KHỞI TẠO & LƯU TRỮ DỮ LIỆU
+        // ==========================================
+        function loadState() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    appState = { ...appState, ...parsed };
+                } else {
+                    saveState();
+                }
+            } catch (e) {
+                console.error("Lỗi đọc dữ liệu localStorage:", e);
+            }
+            applyTheme(appState.theme);
+            document.getElementById('personalGoalInput').value = appState.personalGoal || '';
+            updateUI();
+        }
+
+        function saveState() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+            } catch (e) {
+                console.error("Lỗi lưu dữ liệu:", e);
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = message;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // ==========================================
+        // CẬP NHẬT ĐỒNG HỒ & GIAO DIỆN CHÍNH
+        // ==========================================
+        function updateTimer() {
+            if (!appState.startTime) return;
+            const now = Date.now();
+            const diffMs = Math.max(0, now - appState.startTime);
+
+            // Cập nhật kỷ lục nếu chuỗi hiện tại vượt qua kỷ lục cũ
+            if (diffMs > appState.bestStreakMs) {
+                appState.bestStreakMs = diffMs;
+                saveState();
+            }
+
+            const totalSeconds = Math.floor(diffMs / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('daysCount').textContent = days;
+            document.getElementById('hoursCount').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutesCount').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('secondsCount').textContent = String(seconds).padStart(2, '0');
+
+            const bestDays = Math.floor(appState.bestStreakMs / (1000 * 86400));
+            document.getElementById('bestStreakDisplay').textContent = `${bestDays} ngày`;
+            document.getElementById('attemptsDisplay').textContent = `${appState.attempts} lần`;
+
+            renderMilestones(diffMs / (1000 * 86400));
+        }
+
+        function updateUI() {
+            if (appState.startTime) {
+                const startDate = new Date(appState.startTime);
+                document.getElementById('startDateDisplay').textContent =
+                    `Bắt đầu: ${startDate.toLocaleDateString('vi-VN')} lúc ${startDate.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'})}`;
+            }
+            updateTimer();
+            renderJournalHistory();
+            renderTopTriggers();
+        }
+
+        // ==========================================
+        // CỘT MỐC PHỤC HỒI (MILESTONES)
+        // ==========================================
+        function renderMilestones(currentDaysFloat) {
+            const container = document.getElementById('milestonesContainer');
+            const progressPercent = Math.min(100, (currentDaysFloat / 90) * 100);
+            document.getElementById('progressPercent').textContent = `${progressPercent.toFixed(1)}%`;
+            document.getElementById('overallProgressBar').style.width = `${progressPercent}%`;
+
+            // Tìm cột mốc tiếp theo
+            const nextMilestone = MILESTONES.find(m => m.days > currentDaysFloat);
+            const badge = document.getElementById('nextMilestoneBadge');
+            if (nextMilestone) {
+                const remaining = Math.ceil(nextMilestone.days - currentDaysFloat);
+                badge.textContent = `Cột mốc tiếp theo: ${nextMilestone.days} ngày (còn ${remaining} ngày)`;
+            } else {
+                badge.textContent = `🎉 Bạn đã chinh phục tất cả cột mốc 90 ngày!`;
+            }
+
+            container.innerHTML = MILESTONES.map(m => {
+                const achieved = currentDaysFloat >= m.days;
+                return `
+                    <div class="p-4 rounded-2xl border transition-all ${
+                        achieved
+                        ? 'bg-emerald-500/10 border-emerald-500/40 dark:bg-emerald-950/30 dark:border-emerald-500/30'
+                        : 'bg-slate-50/70 dark:bg-slate-950/50 border-slate-200/70 dark:border-slate-800/80 opacity-75'
+                    }">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${
+                                achieved ? 'bg-emerald-500 text-white' : 'bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                            }">${m.days} Ngày</span>
+                            ${achieved
+                                ? '<i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-500"></i>'
+                                : '<i data-lucide="lock" class="w-3.5 h-3.5 text-slate-400"></i>'}
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-800 dark:text-slate-100 mb-1">${m.title}</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">${m.desc}</p>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        // ==========================================
+        // ĐẶT LẠI CHUỖI (RESET NHẸ NHÀNG)
+        // ==========================================
+        function confirmResetStreak() {
+            const reason = document.getElementById('relapseReasonSelect').value;
+            const lesson = document.getElementById('relapseLessonInput').value.trim();
+
+            // Lưu lại lịch sử để rút kinh nghiệm
+            appState.relapses.unshift({
+                date: new Date().toISOString(),
+                reason,
+                lesson,
+                streakDays: Math.floor((Date.now() - appState.startTime) / (1000 * 86400))
+            });
+
+            // Đồng thời ghi vào nhật ký tác nhân để thống kê
+            appState.journals.unshift({
+                id: Date.now(),
+                date: new Date().toISOString(),
+                mood: 'Căng thẳng',
+                urge: 5,
+                triggers: [reason],
+                note: lesson ? `[Tái phát - Bài học]: ${lesson}` : `[Ghi nhận đặt lại chuỗi]: Nguyên nhân từ ${reason}`
+            });
+
+            appState.startTime = Date.now();
+            appState.attempts += 1;
+            saveState();
+
+            document.getElementById('relapseLessonInput').value = '';
+            closeModal('resetModal');
+            updateUI();
+            showToast('Đã ghi nhận bài học và bắt đầu lại hành trình mới!');
+        }
+
+        // ==========================================
+        // MỤC TIÊU CÁ NHÂN
+        // ==========================================
+        let goalSaveTimeout = null;
+        function savePersonalGoal() {
+            appState.personalGoal = document.getElementById('personalGoalInput').value;
+            saveState();
+            const status = document.getElementById('goalSavedStatus');
+            status.classList.remove('opacity-0');
+            clearTimeout(goalSaveTimeout);
+            goalSaveTimeout = setTimeout(() => {
+                status.classList.add('opacity-0');
+            }, 1500);
+        }
+
+        // ==========================================
+        // NHẬT KÝ TÂM TRẠNG & TÁC NHÂN (TRIGGERS)
+        // ==========================================
+        function selectMood(mood, btn) {
+            selectedMood = mood;
+            document.querySelectorAll('.mood-btn').forEach(b => {
+                b.className = 'mood-btn py-2 px-1 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 text-xs font-medium text-center transition';
+            });
+            btn.className = 'mood-btn active-mood py-2 px-1 rounded-xl border border-emerald-500 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-medium text-center transition';
+        }
+
+        function updateUrgeLabel(val) {
+            const labels = {
+                1: '1 / 5 (Rất thấp)',
+                2: '2 / 5 (Nhẹ)',
+                3: '3 / 5 (Trung bình)',
+                4: '4 / 5 (Khá mạnh)',
+                5: '5 / 5 (Rất mạnh - Cần SOS)'
+            };
+            const el = document.getElementById('urgeLevelLabel');
+            el.textContent = labels[val];
+            el.className = val >= 4 ? 'font-bold text-amber-500' : 'font-bold text-emerald-500';
+        }
+
+        function toggleTriggerTag(btn, tag) {
+            if (tag === 'Không có') {
+                selectedTriggers = ['Không có'];
+                document.querySelectorAll('.trigger-tag').forEach(b => {
+                    b.className = 'trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition';
+                });
+                btn.className = 'trigger-tag selected-tag px-2.5 py-1 rounded-lg text-xs border border-emerald-500/50 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 transition';
+                return;
+            }
+
+            // Bỏ chọn "Không có" nếu chọn tác nhân cụ thể
+            selectedTriggers = selectedTriggers.filter(t => t !== 'Không có');
+            const firstBtn = document.querySelector('#triggerTags button');
+            firstBtn.className = 'trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition';
+
+            if (selectedTriggers.includes(tag)) {
+                selectedTriggers = selectedTriggers.filter(t => t !== tag);
+                btn.className = 'trigger-tag px-2.5 py-1 rounded-lg text-xs border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-400 transition';
+            } else {
+                selectedTriggers.push(tag);
+                btn.className = 'trigger-tag selected-tag px-2.5 py-1 rounded-lg text-xs border border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-400 transition';
+            }
+
+            if (selectedTriggers.length === 0) {
+                toggleTriggerTag(firstBtn, 'Không có');
+            }
+        }
+
+        function addJournalEntry() {
+            const urge = parseInt(document.getElementById('urgeRange').value);
+            const note = document.getElementById('journalNoteInput').value.trim();
+
+            appState.journals.unshift({
+                id: Date.now(),
+                date: new Date().toISOString(),
+                mood: selectedMood,
+                urge,
+                triggers: [...selectedTriggers],
+                note
+            });
+
+            // Giới hạn lưu 100 nhật ký gần nhất để tối ưu hiệu năng
+            if (appState.journals.length > 100) appState.journals.pop();
+
+            saveState();
+            document.getElementById('journalNoteInput').value = '';
+            renderJournalHistory();
+            renderTopTriggers();
+            showToast('Đã lưu nhật ký theo dõi hôm nay!');
+        }
+
+        function renderJournalHistory() {
+            const list = document.getElementById('journalHistoryList');
+            document.getElementById('journalCountBadge').textContent = `${appState.journals.length} mục`;
+
+            if (appState.journals.length === 0) {
+                list.innerHTML = '<p class="text-slate-400 italic">Hãy lưu ghi chép đầu tiên của bạn.</p>';
+                return;
+            }
+
+            list.innerHTML = appState.journals.slice(0, 10).map(item => {
+                const d = new Date(item.date);
+                const timeStr = `${d.getDate()}/${d.getMonth()+1} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+                return `
+                    <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200/60 dark:border-slate-800/80">
+                        <div class="flex justify-between items-center text-[11px] text-slate-400 mb-1">
+                            <span class="font-medium text-slate-600 dark:text-slate-300">${item.mood} • Thôi thúc: ${item.urge}/5</span>
+                            <span>${timeStr}</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1 mb-1">
+                            ${item.triggers.map(t => `<span class="px-1.5 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-[10px] text-slate-600 dark:text-slate-300">${t}</span>`).join('')}
+                        </div>
+                        ${item.note ? `<p class="text-slate-600 dark:text-slate-300 mt-1">${escapeHTML(item.note)}</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderTopTriggers() {
+            const container = document.getElementById('topTriggersList');
+            const counts = {};
+            appState.journals.forEach(j => {
+                j.triggers.forEach(t => {
+                    if (t !== 'Không có') {
+                        counts[t] = (counts[t] || 0) + 1;
+                    }
+                });
+            });
+
+            const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 4);
+            if (sorted.length === 0) {
+                container.innerHTML = '<p class="text-slate-400 italic">Chưa ghi nhận tác nhân kích thích nào.</p>';
+                return;
+            }
+
+            const maxVal = sorted[0][1];
+            container.innerHTML = sorted.map(([name, count]) => {
+                const pct = Math.round((count / maxVal) * 100);
+                return `
+                    <div>
+                        <div class="flex justify-between text-[11px] mb-1">
+                            <span class="text-slate-700 dark:text-slate-300 font-medium">${name}</span>
+                            <span class="text-slate-400">${count} lần</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div class="h-full bg-amber-500 rounded-full" style="width: ${pct}%"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // CHẾ ĐỘ KHẨN CẤP (SOS) & BÀI TẬP THỞ 4-7-8
+        // ==========================================
+        function openSOSModal() {
+            pickRandomAction();
+            const goal = appState.personalGoal.trim();
+            document.getElementById('sosGoalReminder').textContent = goal
+                ? `"${goal}"`
+                : '"Tôi muốn làm chủ bản thân, sống tỉnh thức và dành năng lượng cho những mục tiêu ý nghĩa."';
+            openModal('sosModal');
+            startBreathingExercise();
+        }
+
+        function closeSOSModal() {
+            stopBreathingExercise();
+            closeModal('sosModal');
+        }
+
+        function pickRandomAction() {
+            const el = document.getElementById('sosActionText');
+            let nextAction = SOS_ACTIONS[Math.floor(Math.random() * SOS_ACTIONS.length)];
+            if (nextAction === el.textContent && SOS_ACTIONS.length > 1) {
+                nextAction = SOS_ACTIONS[(SOS_ACTIONS.indexOf(nextAction) + 1) % SOS_ACTIONS.length];
+            }
+            el.textContent = nextAction;
+        }
+
+        function toggleBreathingExercise() {
+            if (isBreathing) {
+                stopBreathingExercise();
+            } else {
+                startBreathingExercise();
+            }
+        }
+
+        function startBreathingExercise() {
+            stopBreathingExercise();
+            isBreathing = true;
+            document.getElementById('toggleBreathBtn').textContent = 'Tạm dừng';
+
+            const circle = document.getElementById('breathCircle');
+            const timerEl = document.getElementById('breathTimer');
+            const instEl = document.getElementById('breathInstruction');
+
+            let phase = 'inhale'; // inhale (4s) -> hold (7s) -> exhale (8s)
+            let counter = 4;
+
+            function runPhase() {
+                if (phase === 'inhale') {
+                    circle.className = 'breathing-circle breathing-inhale w-24 h-24 rounded-full border-2 border-emerald-400 flex flex-col items-center justify-center';
+                    instEl.textContent = 'Hít vào thật sâu bằng mũi...';
+                } else if (phase === 'hold') {
+                    circle.className = 'breathing-circle breathing-hold w-24 h-24 rounded-full border-2 border-sky-400 flex flex-col items-center justify-center';
+                    instEl.textContent = 'Giữ nhịp thở nhẹ nhàng...';
+                } else {
+                    circle.className = 'breathing-circle breathing-exhale w-24 h-24 rounded-full border-2 border-emerald-500/40 flex flex-col items-center justify-center';
+                    instEl.textContent = 'Thở ra chậm rãi bằng miệng...';
+                }
+                timerEl.textContent = `${counter}s`;
+            }
+
+            runPhase();
+            breathingInterval = setInterval(() => {
+                counter--;
+                if (counter <= 0) {
+                    if (phase === 'inhale') {
+                        phase = 'hold';
+                        counter = 7;
+                    } else if (phase === 'hold') {
+                        phase = 'exhale';
+                        counter = 8;
+                    } else {
+                        phase = 'inhale';
+                        counter = 4;
+                    }
+                }
+                runPhase();
+            }, 1000);
+        }
+
+        function stopBreathingExercise() {
+            isBreathing = false;
+            clearInterval(breathingInterval);
+            const circle = document.getElementById('breathCircle');
+            circle.className = 'breathing-circle w-24 h-24 rounded-full bg-emerald-500/15 border-2 border-emerald-500/50 flex flex-col items-center justify-center';
+            document.getElementById('breathTimer').textContent = '4-7-8';
+            document.getElementById('breathInstruction').textContent = 'Sẵn sàng hít thở điều hòa';
+            document.getElementById('toggleBreathBtn').textContent = 'Bắt đầu nhịp thở';
+        }
+
+        // ==========================================
+        // TIỆN ÍCH: ẨN NHANH (STEALTH), THEME, BACKUP
+        // ==========================================
+        function toggleStealthMode() {
+            const screen = document.getElementById('stealthScreen');
+            const now = new Date();
+            document.getElementById('stealthTime').textContent =
+                `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            screen.classList.toggle('hidden');
+        }
+
+        // Phím tắt ESC để bật/tắt nhanh màn hình ngụy trang
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleStealthMode();
+            }
+        });
+
+        function toggleTheme() {
+            appState.theme = appState.theme === 'dark' ? 'light' : 'dark';
+            applyTheme(appState.theme);
+            saveState();
+        }
+
+        function applyTheme(theme) {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                icon.setAttribute('data-lucide', 'sun');
+            } else {
+                html.classList.remove('dark');
+                icon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function exportDataJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `hanh_trinh_tu_chu_${new Date().toISOString().slice(0,10)}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast('Đã tải xuống tệp sao lưu dữ liệu!');
+        }
+
+        function importDataJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported && typeof imported.startTime === 'number') {
+                        appState = { ...appState, ...imported };
+                        saveState();
+                        loadState();
+                        closeModal('backupModal');
+                        showToast('Khôi phục dữ liệu thành công!');
+                    } else {
+                        showToast('Tệp dữ liệu không hợp lệ.');
+                    }
+                } catch (err) {
+                    showToast('Lỗi đọc tệp JSON.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, tag => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+            }[tag]));
+        }
+
+        // Khởi chạy ứng dụng khi tải trang xong
+        window.onload = function() {
+            loadState();
+            timerInterval = setInterval(updateTimer, 1000);
+        };
+    </script>
+</body>
+</html>
